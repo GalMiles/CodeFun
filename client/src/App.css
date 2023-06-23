@@ -76,7 +76,7 @@ Link {
 .editorSide {
   display: flex;
   height: 100vh;
-  background-color: #fff;
+  background-color: #242629;
   color:#050607;
   border-radius: 0.5rem;
   margin: 1rem;
@@ -84,6 +84,14 @@ Link {
   width: 80%;
   padding: 16px;
 
+}
+
+.highlight {
+  text-decoration-color: blue;
+}
+
+.highlight-glyph {
+  text-decoration-color: blue;
 }
 
 .client {

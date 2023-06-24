@@ -1,53 +1,65 @@
 
 import toast from 'react-hot-toast';
-import { useState, useEffect, useRef} from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Client from '../components/Client';
-import CodeEditor from '../components/CodeEditor';
 import { initSocket } from '../utils/socket';
-function CodeBlockPage() {
 
-  const value = `import logo from './logo.svg';
-  import './App.css';
-  function App() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-        </header>
-      </div>
-    );
-  }
-  export default App; `
+function CodeBlockPage({ blockId }) {
 
   const socketRef = useRef(null);
-  const [code, setCode] = useState(value);
-  const [isMentor, setIsMentor] = useState(true);
-  const [clients, setClients] = useState([
-    { socketId: 1, username: 'Mentor Tom' },
-    { socketId: 2, username: 'Student Josh' }
-  ]);
 
+  const [code, setCode] = useState('');
+  const [isMentor, setIsMentor] = useState(true);
+  const [clients, setClients] = useState([]);
+  const [codeBlocks, setCodeBlocks] = useState([]);
+
+  console.log(blockId)
 
   useEffect(() => {
     const visitor = isMentor ? 'Mentor' : 'Student';
     toast.success(`Welcome ${visitor}!`);
-  
+
     const init = async () => {
       socketRef.current = await initSocket();
-      socketRef.current.emit('send-code', code );
-      socketRef.current.on('receive-code', (code) => {
-        setCode(code);
+
+      //recive code blocks from server
+      socketRef.current.on('code-blocks', (blocks) => {
+        setCodeBlocks(blocks);
+        console.log(codeBlocks);
+        const initCode = blocks.length > 0 ? blocks[blockId].code : ' ';
+        setCode(initCode)
+        console.log(`code:${initCode}`);
+        socketRef.current.emit('codeUpdated', initCode);
+       
       })
-    };
 
+      //recive clients list from server
+      socketRef.current.on('new-client-connected', (clients) => {
+        setClients(clients);
+      })
+
+      //recive client type from server
+      socketRef.current.on('client-connected', (isMentor, clientsList) => {
+        setIsMentor(isMentor);
+        setClients(clientsList);
+      })
+
+      //receive code from server
+      socketRef.current.on('code', (sharedCode) => {
+        setCode(sharedCode);
+      })
+
+    };
     init();
-    }, [])
+    
+  }, [])
 
-    const handleValueChange = (newValue, event) => {
-      setCode(newValue);      
-    };
+  //update sharedCode and send it to the server
+  const handleCodeChange = (event) => {
+    const newCode = event.target.value;
+    setCode(newCode);
+    socketRef.current.emit('codeUpdated', newCode);
+  };
 
   return (
     <div className='cosdeBlockPage'>
@@ -64,7 +76,12 @@ function CodeBlockPage() {
           </div>
         </div>
         <div className='editorSide'>
-        <CodeEditor value = {code} onValueChange= {handleValueChange}/>
+          <textarea
+            value={code}
+            onChange={handleCodeChange}
+            readOnly={isMentor}
+            className='code-hightlight'
+          />
         </div>
       </div>
     </div>

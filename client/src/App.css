@@ -50,6 +50,24 @@ Link {
   justify-content: center;
 }
 
+textarea {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 14px;
+  line-height: 1.5;
+  padding: 10px;
+  width: 100%;
+  height: 500px;
+  border: none; /* Remove the border */
+  border-radius: 4px;
+  background-color: #242629;
+  color: #fff;
+  outline: none; /* Remove the outline when focused */
+}
+
+textarea:focus {
+  box-shadow: none;
+}
+
 .aside {
   background: #242629;
   padding: 16px;

@@ -1,4 +1,5 @@
 import {io} from 'socket.io-client';
+const PORT = process.env.PORT || 5000;
 
 export const initSocket = () => {
    const options = {
@@ -8,5 +9,5 @@ export const initSocket = () => {
     transports: ['websocket']
     };
 
-    return io('http://localhost:5000' , options);
+    return io(`http://localhost:${PORT}` , options);
 };

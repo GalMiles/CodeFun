@@ -10,7 +10,6 @@ const PORT = process.env.PORT || 5000;
 
 let clientsList = [];
 let isMentor = true;
-// let sharedCode =   "const fs = require('fs');\n\nconst jsonString = `{\n  \"code\": \"import logo from './logo.svg';\\nimport './App.css';\\nfunction App() {\\n  return (\\n    <div className=\\\"App\\\">\\n      <header className=\\\"App-header\\\">\\n        <p>\\n          Edit <code>src/App.js</code> and save to reload.\\n        </p>\\n      </header>\\n    </div>\\n  );\\n}\\nexport default App;\"`\n\n(async () => {\n  try {\n    await fs.promises.writeFile('appData.json', jsonString);\n    console.log('File saved successfully.');\n  } catch (err) {\n    console.error(err);\n  }\n})();"
 let sharedCode = ' '
 
 //create a socket connection

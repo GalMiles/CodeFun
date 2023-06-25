@@ -7,7 +7,5 @@ Every change in the code editor showed immediately in real-time.
 
 * Working with [socket.io](https://socket.io/)
 * Working with [mongoose](https://www.mongodb.com/)
-<img width="308" alt="codeFun" src="https://github.com/GalMiles/CodeFun/assets/58370322/53edaeb1-9d89-4f2f-85ba-d0a18b50d98c">
 
-
-
+<img width="944" alt="codeFun" src="https://github.com/GalMiles/CodeFun/assets/58370322/251fa578-6503-4101-a2dd-33fc3848cadf">

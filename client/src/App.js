@@ -1,7 +1,6 @@
 import './App.css';
 import LobbyPage from './pages/LobbyPage';
 import {Toaster} from 'react-hot-toast';
-import { useState } from 'react';
 function App() {
 
   return (

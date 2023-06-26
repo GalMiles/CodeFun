@@ -1,10 +1,13 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import CodeBlockPage from './CodeBlockPage'
 
-function CodeBlock({blockName, blockId}) {
+function CodeBlock() {
+
+
+
   return (
     <div className='CodeBlock'>
-        <Link to ={`/editor/${blockId}`} style = {{color: 'white', textDecoration: 'none'}} >{blockName}</Link>
 
     </div>
   )

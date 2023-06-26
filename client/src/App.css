@@ -3,7 +3,6 @@
 }
 
 
-
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -16,9 +15,12 @@
   }
 }
 
-Link {
-  color: white;
-  text-decoration: none;
+
+h2 {
+  align-self: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .CodeBlock {
@@ -41,14 +43,26 @@ Link {
   align-items: center;
   align-self: center;
 }
-  
 
-.lobbyPage {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+Link {
+  text-decoration-line: none;
+  text-decoration: none;
 }
+
+button {
+  display: grid;
+  align-items: center;
+  background-color: #050607;
+  color: white;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  margin: 1rem;
+  flex-direction: row;
+}
+
+/* .lobbyPage {
+  display: flex;
+} */
 
 textarea {
   font-family: 'Courier New', Courier, monospace;
@@ -68,17 +82,7 @@ textarea:focus {
   box-shadow: none;
 }
 
-.aside {
-  background: #242629;
-  padding: 16px;
-  color: #fff;
-  display: flex;
-  flex-direction: column;
-  width: 20%;
-  height: 100vh;
-  border-radius: 0.5rem;
-  margin: 1rem;
-}
+
 
 .clientsList {
   display: flex;
@@ -89,6 +93,27 @@ textarea:focus {
 
 .mainWrap {
   display: flex;
+  width: 100%;
+  
+}
+.homePage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-self: center;
+  justify-content: center;
+}
+
+.aside {
+  background: #242629;
+  padding: 16px;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  height: 80vh;
+  border-radius: 0.5rem;
+  margin: 1rem;
 }
 
 .editorSide {
@@ -98,19 +123,12 @@ textarea:focus {
   color:#050607;
   border-radius: 0.5rem;
   margin: 1rem;
-  height: 100vh;
+  height: 80vh;
   width: 80%;
   padding: 16px;
 
 }
 
-.highlight {
-  text-decoration-color: blue;
-}
-
-.highlight-glyph {
-  text-decoration-color: blue;
-}
 
 .client {
   font-size: small;

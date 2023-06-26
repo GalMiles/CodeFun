@@ -1,34 +1,32 @@
 
 import toast from 'react-hot-toast';
 import { useState, useEffect, useRef } from 'react';
-import Client from '../components/Client';
+import Client from './Client';
 import { initSocket } from '../utils/socket';
 
 function CodeBlockPage({ blockId }) {
 
   const socketRef = useRef(null);
+  const blocks = useRef([]);
 
   const [code, setCode] = useState('');
   const [isMentor, setIsMentor] = useState(true);
   const [clients, setClients] = useState([]);
-  const [codeBlocks, setCodeBlocks] = useState([]);
 
-  console.log(blockId)
 
   useEffect(() => {
     const visitor = isMentor ? 'Mentor' : 'Student';
     toast.success(`Welcome ${visitor}!`);
+    setIsMentor(false);
 
     const init = async () => {
       socketRef.current = await initSocket();
 
       //recive code blocks from server
-      socketRef.current.on('code-blocks', (blocks) => {
-        setCodeBlocks(blocks);
-        console.log(codeBlocks);
-        const initCode = blocks.length > 0 ? blocks[blockId].code : ' ';
+      socketRef.current.on('code-blocks', (codeBlocks) => {
+        blocks.current = codeBlocks;
+        const initCode = blocks.current[blockId].code;
         setCode(initCode)
-        console.log(`code:${initCode}`);
         socketRef.current.emit('codeUpdated', initCode);
        
       })
@@ -51,6 +49,7 @@ function CodeBlockPage({ blockId }) {
 
     };
     init();
+    
     
   }, [])
 

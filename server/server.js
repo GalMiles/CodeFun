@@ -5,8 +5,9 @@ const server = http.createServer(app);
 const { Server } = require('socket.io');
 const io = new Server(server);
 const db = require('./database/db.js');
+// require('dotenv').config();
 
-const PORT = process.env.PORT || 5000;
+const PORT = 5000;
 
 let clientsList = [];
 let isMentor = true;
@@ -64,5 +65,4 @@ io.on('connection', (socket) => {
 
 
 });
-
 server.listen(PORT, () => { console.log(`Server is running on port ${PORT}`) })

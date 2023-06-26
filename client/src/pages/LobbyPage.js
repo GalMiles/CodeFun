@@ -1,21 +1,59 @@
-import React from 'react'
+import {React, useState} from 'react'
 import '../App.css'
-import CodeBlock from '../components/CodeBlock'
+import CodeBlockPage from '../components/CodeBlockPage'
+import { BrowserRouter, Route, Link, Routes} from 'react-router-dom';
 
-function LobbyPage({handleClick}) {
+
+function LobbyPage() {
+
+  const [showHome, setShowHome] = useState(true);
+
+  function handleClick(){
+    setShowHome(false);
+  }
 
   return (
-    <div className='lobbyPage'>
-      <img src='/code-logo.png' alt='code-fun-logo' className='img-logo' height={200} />
-      <h2>Please choose code block</h2>
-        <div className='codeBlockList'>
-        <CodeBlock blockName="Naive Case" blockId='0' onClick={handleClick("0")}/>
-        <CodeBlock blockName="Non-async Case" blockId='1' onClick={handleClick("1")}/>
-        <CodeBlock blockName="Async Case" blockId='2' onClick={handleClick("2")}/>  
-        <CodeBlock blockName="Optimal Case" blockId='3' onClick={handleClick("3")}/> 
-      </div>
-    </div>
-  )
+    <BrowserRouter>
+      <div className='lobbyPage'>
+        {showHome ? (
+        <div className='homePage'>
+          <img src='/code-logo.png' alt='code-fun-logo' className='img-logo' height={200} />
+          <h2>Please choose code block</h2>
+          <div className='codeBlockList'>
+                <Link to="/code-block-0">
+                  <button onClick={handleClick}> 
+                    Naive Case
+                  </button>
+                </Link>
+                <Link to="/code-block-1">
+                  <button onClick={handleClick}> 
+                    Non-Async Case
+                  </button>
+                </Link>
+                <Link to="/code-block-2">
+                  <button onClick={handleClick}> 
+                    Async Case
+                  </button>
+                </Link>
+                <Link to="/code-block-3">
+                  <button onClick={handleClick}> 
+                    Optimal Case
+                  </button>
+                </Link>
+          </div>
+          </div>
+        ) :
+        (
+        <Routes>
+          <Route path="/code-block-0" element={<CodeBlockPage blockId='0' />} />
+          <Route path="/code-block-1" element={<CodeBlockPage blockId='1' />} />
+          <Route path="/code-block-2" element={<CodeBlockPage blockId='2' />} />
+          <Route path="/code-block-3" element={<CodeBlockPage blockId='3' />} />
+        </Routes>
+        ) }
+        </div>
+    </BrowserRouter>
+      )
 }
 
 export default LobbyPage

@@ -1,5 +1,4 @@
 
-import toast from 'react-hot-toast';
 import { useState, useEffect, useRef } from 'react';
 import Client from './Client';
 import { initSocket } from '../utils/socket';
@@ -16,7 +15,6 @@ function CodeBlockPage({ blockId }) {
 
   useEffect(() => {
     const visitor = isMentor ? 'Mentor' : 'Student';
-    toast.success(`Welcome ${visitor}!`);
     setIsMentor(false);
 
     const init = async () => {

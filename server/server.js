@@ -33,7 +33,6 @@ io.on('connection', (socket) => {
         socket.emit('code-blocks', codeBlocks);
     })
 
-
     //receive code from client
     socket.on('codeUpdated', (newCode) => {
         sharedCode = newCode;
@@ -61,8 +60,5 @@ io.on('connection', (socket) => {
     console.log(clientsList);
     socket.emit('client-connected', isMentor, clientsList);
     socket.broadcast.emit('new-client-connected', clientsList);
-
-
-
 });
 server.listen(PORT, () => { console.log(`Server is running on port ${PORT}`) })

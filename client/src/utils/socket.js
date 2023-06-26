@@ -1,6 +1,5 @@
 import {io} from 'socket.io-client';
-const PORT = process.env.REACT_APP_NODE_ENV || 5000;
-// const origin = process.env.REACT_APP_ORIGIN || 'http://localhost:';
+const origin = process.env.REACT_APP_NODE_PORT || 'http://localhost:5000';
 
 export const initSocket = () => {
    const options = {
@@ -10,5 +9,6 @@ export const initSocket = () => {
     transports: ['websocket']
     };
 
-    return io(`http://localhost:${PORT}` , options);
+    console.log(`connecting to socket ${origin}`);
+    return io( `${origin}`, options);
 };

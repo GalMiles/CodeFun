@@ -7,7 +7,7 @@ const io = new Server(server);
 const db = require('./database/db.js');
 require('dotenv').config();
 
-const PORT = process.env.PORT;;
+const PORT = process.env.PORT;
 
 let clientsList = [];
 let isMentor = true;

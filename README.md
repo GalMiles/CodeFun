@@ -13,6 +13,7 @@ Every change in the code editor showed immediately in real-time.
 * Node.js + Express
 * Real-Time library -  [socket.io](https://socket.io/)
 * MongoDB - [mongoose](https://www.mongodb.com/)
+* Cloud Environment- [Render](https://render.com/)
 
 ## Frontend
 * React + React Hooks
